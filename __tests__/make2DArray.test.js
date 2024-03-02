@@ -1,4 +1,4 @@
-import { make2DArray } from '../src/changeFunction.js';
+import { make2DArray } from '../src/gameLogic.js';
 
 describe('make2DArray()', () => {
   test('should create a two dimensional array', () => {
@@ -7,7 +7,7 @@ describe('make2DArray()', () => {
     expect(newArray[0].length).toEqual(5);
   })
 
-  test('first argument should determine number of colums in array, (determines the number of items in a row)', () => {
+  test('first argument should determine number of columns in array, (determines the number of items in a row)', () => {
     const newArray = make2DArray(3,5);
     expect(newArray[0].length).toEqual(3);
   })
@@ -23,7 +23,6 @@ describe('make2DArray()', () => {
       newArray[index].forEach((cellValue) => {
         expect(cellValue === 0 || cellValue === 1).toBe(true)
       })
-    });
-    
+    });   
   })
 })
