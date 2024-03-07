@@ -1,15 +1,18 @@
-import PropTypes from 'prop-types';
+import React from 'react';
 
 function Cell(props) {
+  const { on } = props;
+  const color = on === 0 ? 'white' : 'grey';
+
   return (
-    <>
-      {props.on}
-    </>
-  )
+    <div
+      style={{
+        width: '5px',
+        height: '5px',
+        backgroundColor: color,
+      }}
+    ></div>
+  );
 }
 
-export default Cell
-
-Cell.propTypes = {
-  on: PropTypes.number
-}
+export default Cell;
