@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
 
 function Button(props) {
-  const { text, onClickHandler } = props;
+  const { buttonText, onClickingStartStop } = props;
 
   return (
     <>
-      <button onClick={onClickHandler}>{text}</button>
+      <button onClick={onClickingStartStop}>{buttonText}</button>
     </> 
   )
 }
 
 Button.propTypes = {
-  text: PropTypes.string.isRequired,
-  onClickHandler: PropTypes.func.isRequired
+  buttonText: PropTypes.string.isRequired,
+  onClickingStartStop: PropTypes.func.isRequired
 };
 
 export default Button;

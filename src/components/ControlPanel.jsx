@@ -1,42 +1,38 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
-import * as initialStates from '../initialStates';
+import Dropdown from './Dropdown';
 
 function ControlPanel(props) {
-  const [initialStateOptions, setInitialStateOptions] = useState([]);
-
-  const createStateOptionsList = () => {
-    const stateOptionsArray = Object.keys(initialStates).map((option) => {
-      return option;
-    })
-    stateOptionsArray.unshift("Random State");
-    setInitialStateOptions(stateOptionsArray);
+  const {isRunning, setIsRunning, setGrid, setGenerationCount } = props;
+  const [buttonText, setButtonText] = useState("Start");
+  
+  const handleStartStopClick = () => {
+    setIsRunning(!isRunning);
+    setButtonText((buttonText === "Start") ? "Stop" : "Start");
   }
 
-  useEffect(() => {
-    createStateOptionsList();
-  },[])
+  const handleSelectingInitialState = (newGrid) => {
+    setButtonText("Start");
+    setGrid(newGrid);
+    setIsRunning(false);
+    setGenerationCount(0);
+  }
+  
+    return (
+      <>
+        <Dropdown onSelectingInitialState={handleSelectingInitialState}/>
+        <Button buttonText={buttonText} onClickingStartStop={handleStartStopClick}/>
+      </>
+    )
 
-
-  return (
-    <>
-      <div>
-        <label htmlFor="dropdown">Select an InitialState:</label>
-        <select id="dropdown">
-          {initialStateOptions.map((option, index) => (
-            <option key={index} value={option}>{option}</option>
-          ))}
-        </select>
-      </div>
-      {/* {console.log(initialStateOptions)} */}
-      <Button text="Start"></Button>
-      <Button text="Stop"></Button>
-    </> 
-  )
 }
 
 ControlPanel.propTypes = {
-};
+  isRunning: PropTypes.bool.isRequired,
+  setIsRunning:PropTypes.func.isRequired,
+  setGrid: PropTypes.func.isRequired,
+  setGenerationCount: PropTypes.func.isRequired
+}
 
 export default ControlPanel;

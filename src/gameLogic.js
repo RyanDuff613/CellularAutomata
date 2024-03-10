@@ -10,6 +10,40 @@ export function make2DArray(cols, rows) {
   return grid;
 }
 
+export function make2DArrayEmpty(cols, rows){
+  let grid = [];
+  for (let i = 0; i < rows; i++) {
+    let row = [];
+    for (let j = 0; j < cols; j++){
+      row.push(0)
+    }
+    grid.push(row);
+  }
+  return grid;  
+}
+
+export const placePatternOnGrid = (grid, patternToAdd) => {
+  const numRows = grid.length;
+  const numCols = grid[0].length;
+  const patternRows = patternToAdd.length;
+  const patternCols = patternToAdd[0].length;
+
+  // Calculate the starting row and column indices for placing the pattern
+  const startRow = Math.floor((numRows - patternRows) / 2);
+  const startCol = Math.floor((numCols - patternCols) / 2);
+
+  // Copy the grid to avoid modifying the original grid directly
+  const newGrid = grid.map(row => [...row]);
+
+  // Replace values in the new grid with values from the pattern
+  for (let i = 0; i < patternRows; i++) {
+    for (let j = 0; j < patternCols; j++) {
+      newGrid[startRow + i][startCol + j] = patternToAdd[i][j];
+    }
+  }
+  return newGrid;
+};
+
 export function nextGeneration(prevGen){
   let nextGen = prevGen.map(innerArray => [...innerArray]);
   for (let i = 0; i < prevGen.length; i++){

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Cell(props) {
   const { on } = props;
@@ -13,6 +14,10 @@ function Cell(props) {
       }}
     ></div>
   );
+}
+
+Cell.propTypes = {
+  on: PropTypes.number.isRequired
 }
 
 export default Cell;
