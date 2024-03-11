@@ -1,6 +1,5 @@
-import { useState } from 'react'
-
-import { make2DArray } from '../gameLogic'
+import { useState, useEffect } from 'react'
+import { nextGeneration } from '../gameLogic'
 import Grid from './Grid';
 import ControlPanel from './ControlPanel';
 
@@ -9,15 +8,24 @@ function CellularAutomata() {
   const [isRunning, setIsRunning] = useState(false);
   const [grid, setGrid] = useState([]);
 
+  useEffect(() => {
+    let myInterval;
+
+    if (isRunning) {
+      myInterval = setInterval(() => {
+        setGenerationCount(generationCount + 1)
+        setGrid(nextGeneration(grid))
+      }, 100)
+    }
+
+    return () => clearInterval(myInterval);
+  }, [isRunning, grid])
+
   return (
     <>
       <p>Generation: {generationCount}</p>
       <p>isRunning: {isRunning.toString()}</p>
-      <Grid isRunning={isRunning} 
-            grid={grid} 
-            setGrid={setGrid} 
-            generationCount={generationCount} 
-            setGenerationCount={setGenerationCount}/>
+      <Grid grid={grid} />    
       <ControlPanel isRunning={isRunning} 
                     setIsRunning={setIsRunning}
                     setGrid={setGrid}
