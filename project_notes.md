@@ -1,12 +1,11 @@
 # Project Notes
 
 - cells exist in an neighborhood, 
-  - cells will be in one of two states, alive/dead, true/false
-  - at its simplest a neighborhood will be 1 dimensional, 3 horizontal cells
-  - 
+- cells will be in one of two states, alive/dead, true/false
+
 
 - Determining states for first generation
-  - in a 1*3 neighborhood, 2^3 states are possible, 8 states are possible.
+  - in a 1*3 neighborhood, 2^3 states (8) are possible.
   - 
 
 ## Rules for Conway's Game of Life
@@ -16,5 +15,5 @@
 - Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
 ## Questions
-- What does `npm run preview` do? When I run it, it looks like a server has been started at `http://127.0.0.1:4173/` but if I visit in the browser it says that now page was found there.
+- What does `npm run preview` do? When I run it, it looks like a server has been started at `http://127.0.0.1:4173/` but if I visit in the browser it says that no page was found there.
 

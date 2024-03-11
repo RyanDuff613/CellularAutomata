@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 
 import { nextGeneration } from '../gameLogic'
-import Row from './Row'
+import Cell from './Cell.jsx'
 
 function Grid(props) {
   const { isRunning, grid, setGrid, generationCount, setGenerationCount } = props;
@@ -20,12 +20,17 @@ function Grid(props) {
     return () => clearInterval(myInterval);
   }, [isRunning, grid])
 
+  console.log(grid)
   return (
     <>
       {
         grid.map((row, rowIndex) => (
-          <Row key={rowIndex} cellValues={row}/>
-        ))
+          <div style={{ display: 'flex' }}>
+            {row.map((columnValue, columnIndex) => (
+              <Cell key={columnIndex} on={columnValue} />
+            ))}
+          </div>
+        ))  
       }
     </>
   );
