@@ -23,6 +23,7 @@ function CellularAutomata() {
 
   return (
     <>
+      <h1>Welcome to Cellular Automata</h1>
       <p>Generation: {generationCount}</p>
       <p>isRunning: {isRunning.toString()}</p>
       <Grid grid={grid} />    

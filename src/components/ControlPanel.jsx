@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
-import Dropdown from './Dropdown';
+import InitialStateDropdown from './InitialStateDropdown';
 
 function ControlPanel(props) {
   const {isRunning, setIsRunning, setGrid, setGenerationCount } = props;
@@ -9,7 +9,7 @@ function ControlPanel(props) {
   
   const handleStartStopClick = () => {
     setIsRunning(!isRunning);
-    setButtonText((buttonText === "Start") ? "Stop" : "Start");
+    setButtonText(isRunning ? "Start" : "Stop");
   }
 
   const handleSelectingInitialState = (newGrid) => {
@@ -21,11 +21,10 @@ function ControlPanel(props) {
   
     return (
       <>
-        <Dropdown onSelectingInitialState={handleSelectingInitialState}/>
+        <InitialStateDropdown onDropdownChange={handleSelectingInitialState}/>
         <Button buttonText={buttonText} onClickingStartStop={handleStartStopClick}/>
       </>
     )
-
 }
 
 ControlPanel.propTypes = {

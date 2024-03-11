@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import * as presets from '../initialStates';
 import { make2DArray } from '../gameLogic';
 
-function Dropdown(props) {
-  const { onSelectingInitialState } = props;
+function InitialStateDropdown(props) {
+  const { onDropdownChange } = props;
 
   const createStateOptionsList = () => {
     const stateOptionsArray = Object.keys(presets).map((option) => {
@@ -16,7 +16,7 @@ function Dropdown(props) {
   const handleDropdownChange = (event) => {
     const selectedInitialState = event.target.value;
     const newGrid = presets[selectedInitialState] || make2DArray(50,50);
-    onSelectingInitialState(newGrid)
+    onDropdownChange(newGrid)
   };
 
   return (
@@ -32,8 +32,8 @@ function Dropdown(props) {
   )
 }
 
-Dropdown.propTypes = {
-  onSelectingInitialState: PropTypes.func.isRequired
+InitialStateDropdown.propTypes = {
+  onDropdownChange: PropTypes.func.isRequired
 };
 
-export default Dropdown;
+export default InitialStateDropdown;
