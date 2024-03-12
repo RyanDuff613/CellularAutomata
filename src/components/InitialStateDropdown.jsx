@@ -21,9 +21,8 @@ function InitialStateDropdown(props) {
 
   return (
     <>
-      <label htmlFor="dropdown">Select an Initial State:</label>
       <select id="dropdown" onChange={handleDropdownChange}>
-      <option value='' disabled selected hidden>Select an option</option>
+      <option value='' disabled selected>Select an Initial State:</option>
         {createStateOptionsList().map((option, index) => (
           <option key={index} value={option}>{option}</option>
         ))}

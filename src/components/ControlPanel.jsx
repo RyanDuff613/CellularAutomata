@@ -4,12 +4,16 @@ import Button from './Button';
 import InitialStateDropdown from './InitialStateDropdown';
 
 function ControlPanel(props) {
-  const {isRunning, setIsRunning, setGrid, setGenerationCount } = props;
+  const {isRunning, setIsRunning, gridInitialized, setGrid, setGenerationCount } = props;
   const [buttonText, setButtonText] = useState("Start");
   
   const handleStartStopClick = () => {
-    setIsRunning(!isRunning);
-    setButtonText(isRunning ? "Start" : "Stop");
+    if (gridInitialized) {
+      setIsRunning(!isRunning);
+      setButtonText(isRunning ? "Start" : "Stop");
+    } else {
+      alert("Select a grid initialization option before starting")
+    }
   }
 
   const handleSelectingInitialState = (newGrid) => {
@@ -30,6 +34,7 @@ function ControlPanel(props) {
 ControlPanel.propTypes = {
   isRunning: PropTypes.bool.isRequired,
   setIsRunning:PropTypes.func.isRequired,
+  gridInitialized: PropTypes.bool.isRequired,
   setGrid: PropTypes.func.isRequired,
   setGenerationCount: PropTypes.func.isRequired
 }

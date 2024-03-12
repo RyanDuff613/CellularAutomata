@@ -6,7 +6,7 @@ import ControlPanel from './ControlPanel';
 function CellularAutomata() {
   const [generationCount, setGenerationCount] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
-  const [grid, setGrid] = useState([]);
+  const [grid, setGrid] = useState([null]);
 
   useEffect(() => {
     let myInterval;
@@ -29,6 +29,7 @@ function CellularAutomata() {
       <Grid grid={grid} />    
       <ControlPanel isRunning={isRunning} 
                     setIsRunning={setIsRunning}
+                    gridInitialized={(grid[0]== null) ? false : true}
                     setGrid={setGrid}
                     setGenerationCount={setGenerationCount}></ControlPanel>
     </>
